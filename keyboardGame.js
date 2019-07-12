@@ -38,10 +38,17 @@
             enemy.style.left = window.innerWidth/2;
             enemy.style.top = 20;
             var intervalID2 = setInterval(function (){
-                  enemyShoot(enemy, intervalID2);
-            }, Math.random() * 3000);
+                  randomShootInterval(enemy, intervalID2);
+            }, 1000);
             return enemy;
       })();
+      function randomShootInterval(enemy, intervalID2){
+            var interval = Math.random()*3000;
+            
+            setTimeout(function(){
+                  enemyShoot(enemy, intervalID2);
+            }, interval)
+      }
       
       function enemyShoot(enemy, intervalID2){ //fires at a random amount of time between 0 and 2000 ms
                   var bullet = makeDiv(10, 10, "blue", "enemyBullet");
@@ -214,4 +221,5 @@
 
 /* Things I'd like to change:
 - currently, I'm passing interval ID around a lot so that I can cancel it when I want to, is there a better way to do this?
+- I want to make the interval in which it fires different each time, rather than just randomly generating the initial interval
 */
