@@ -117,9 +117,9 @@
       function moveBullet(bullet, intervalID, angle, intervalID2){
             //console.log("calling move bullet");
             //console.log("angle = " + angle);
-            if (parseInt(bullet.style.top) < 0 || parseInt(bullet.style.top) > parseInt(screen.height)-50 || parseInt(bullet.style.left) > parseInt(screen.width)-50){ //CLEAR THESE PROPERLY
+            if (parseInt(bullet.style.top) < 0 || parseInt(bullet.style.top) > parseInt(screen.height)-200 || parseInt(bullet.style.left) > parseInt(screen.width)-200){ //CLEAR THESE PROPERLY
                   clearInterval(intervalID);
-                  //document.body.removeChild(bullet);
+                  document.body.removeChild(bullet);
                   return;
             }
             bullet.style.top = parseInt(bullet.style.top) + (50 * Math.sin(angle));
@@ -140,7 +140,7 @@
             for (var i = targListLen-1; i >= 0; i--){ //use foreach?
                   var target = targets[i];
                   //console.log(targets);
-                  checkForCollision(bullet, target, intervalID);
+                  checkForCollision(bullet, target, targets, intervalID);
             }
       }
       function checkForCollisionEnemy(bullet, target, intervalID, intervalID2){
@@ -153,14 +153,23 @@
                         console.log("Player got hit");
                         var bullets = document.getElementsByName("enemyBullet");
                         alert("You died");
-                        for (var i = bullets.length-1; i>= 0; i--){
-                              clearInterval(intervalID2);
-                              clearInterval(intervalID);
-                              document.body.removeChild(bullets[i]);
-                        }
+                        endGame(intervalID1, intervalID2);
                         //debugger;
 
                   }
+
+      }
+      function endGame (intervalID1, intervalID2){
+            var bullets = document.getElementsByName("enemyBullet");
+            interval_id = setInterval(function(){
+                  return;
+            }, 9);
+            for (var i = 1; i < interval_id; i++){
+                   window.clearInterval(i);
+            }
+            for (var i = bullets.length-1; i>= 0; i--){
+                  document.body.removeChild(bullets[i]);
+            }
 
       }
       function checkForCollision(bullet, target, targets, intervalID){ //checks if bullet is in target, we should just check if one part touches target
@@ -179,8 +188,11 @@
                         target.style.backgroundColor = myEnum[health]; //change colour of target according to health.
                         if (health <= 0) {
                               document.body.removeChild(target);
+                              console.log("Targets length = " + targets.length);
                               if (targets.length == 0) {
+                                    endGame(intervalID);
                                     setTimeout(youWin, 100);
+
                               }
                         }
                         console.log("Collision");
