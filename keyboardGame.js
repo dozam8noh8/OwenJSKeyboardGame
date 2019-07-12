@@ -23,7 +23,7 @@
                   let targ = makeDiv(height, width, 'red', 'target');
                   targ.style.top = height + 30;
                   targ.style.left = 100 + 10* i + (width*i);
-                  targ.setAttribute("health", 1);
+                  targ.setAttribute("health", 5);
             }
       })();
 
@@ -153,13 +153,13 @@
                         console.log("Player got hit");
                         var bullets = document.getElementsByName("enemyBullet");
                         alert("You died");
-                        endGame(intervalID1, intervalID2);
+                        endGame();
                         //debugger;
 
                   }
 
       }
-      function endGame (intervalID1, intervalID2){
+      function endGame (){
             var bullets = document.getElementsByName("enemyBullet");
             interval_id = setInterval(function(){
                   return;
@@ -190,7 +190,7 @@
                               document.body.removeChild(target);
                               console.log("Targets length = " + targets.length);
                               if (targets.length == 0) {
-                                    endGame(intervalID);
+                                    endGame();
                                     setTimeout(youWin, 100);
 
                               }
