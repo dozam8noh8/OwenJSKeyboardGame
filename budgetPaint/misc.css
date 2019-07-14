@@ -1,0 +1,23 @@
+.dot{
+      background-Color:red;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: inline-block;
+}
+div{
+      background-Color:yellow;
+      height:100px;
+      width:700px;
+      top: 700px;
+      position: absolute;
+      left: 100px;
+
+}
+/*span{
+      backgroundColor:red;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      display: inline-block;
+}*/
