@@ -1,0 +1,4 @@
+.dropzone0, .dropzone1, .dropzone2, .dropzone3 * {
+      pointer-events: none;
+  }
+.dropzone1
